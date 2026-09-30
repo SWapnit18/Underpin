@@ -107,7 +107,9 @@ curl -X PATCH http://localhost:3000/tasks/<id>/complete
 
 See [ASSIGNMENT.md](./ASSIGNMENT.md) for full submission requirements. At minimum, include:
 
-- **Test files** — covering the endpoints and edge cases you identified
-- **Bug report** — what you found, where in the code, and why it's a bug (not just symptoms)
-- **At least one fix** — with a note on your approach
-- **`PATCH /tasks/:id/assign` implementation** — plus a short explanation of any design decisions (validation, edge cases, etc.)
+- **Test files** — covering the endpoints and edge cases you identified (see `task-api/tests/`)
+- **Bug report** — what you found, where in the code, and why it's a bug: **[BUG_REPORT.md](./BUG_REPORT.md)**
+- **At least one fix** — with a note on your approach: **[SUBMISSION.md](./SUBMISSION.md)**
+- **`PATCH /tasks/:id/assign` implementation** — plus design decisions: **[SUBMISSION.md](./SUBMISSION.md)**
+- **Submission reflection & production notes** — **[SUBMISSION_NOTES.md](./SUBMISSION_NOTES.md)**
+
