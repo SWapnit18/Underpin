@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Take-Home Assignment Report — The Untested API</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 1.8cm 1.5cm;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #1f2937;
+      background: #ffffff;
+      line-height: 1.6;
+      font-size: 13px;
+    }
+    .header {
+      border-bottom: 2px solid #2563eb;
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .title-area h1 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 4px;
+    }
+    .title-area .subtitle {
+      font-size: 13px;
+      color: #4b5563;
+      font-weight: 500;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .badge-success {
+      background-color: #dcfce7;
+      color: #15803d;
+      border: 1px solid #86efac;
+    }
+    .badge-blue {
+      background-color: #dbeafe;
+      color: #1d4ed8;
+      border: 1px solid #93c5fd;
+    }
+    .meta-box {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 24px;
+    }
+    .meta-item {
+      font-size: 11px;
+    }
+    .meta-item .label {
+      color: #64748b;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 10px;
+      margin-bottom: 2px;
+    }
+    .meta-item .val {
+      font-weight: 700;
+      color: #0f172a;
+      font-size: 12px;
+    }
+    h2 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h3 {
+      font-size: 13px;
+      font-weight: 700;
+      color: #334155;
+      margin-top: 14px;
+      margin-bottom: 6px;
+    }
+    p {
+      margin-bottom: 10px;
+      color: #374151;
+    }
+    ul, ol {
+      margin-left: 20px;
+      margin-bottom: 12px;
+    }
+    li {
+      margin-bottom: 4px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 16px 0;
+      font-size: 12px;
+    }
+    th, td {
+      border: 1px solid #e2e8f0;
+      padding: 7px 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #f1f5f9;
+      color: #334155;
+      font-weight: 600;
+    }
+    tr:nth-child(even) td {
+      background-color: #f8fafc;
+    }
+    .code-block {
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 11px;
+      line-height: 1.5;
+      margin: 8px 0 14px 0;
+      overflow-x: auto;
+    }
+    .inline-code {
+      background: #f1f5f9;
+      color: #0f172a;
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 11px;
+      border: 1px solid #e2e8f0;
+    }
+    .card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 12px 14px;
+      margin-bottom: 12px;
+    }
+    .card-title {
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 4px;
+      color: #0f172a;
+    }
+    .tag-fixed {
+      background: #dcfce7;
+      color: #166534;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-left: 6px;
+    }
+    .page-break {
+      page-break-before: always;
+    }
+    .footer {
+      margin-top: 30px;
+      padding-top: 12px;
+      border-top: 1px solid #e2e8f0;
+      text-align: center;
+      font-size: 11px;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="title-area">
+      <h1>Technical Assignment Report</h1>
+      <div class="subtitle">The Untested API — Comprehensive Testing, Bug Resolution & Feature Engineering</div>
+    </div>
+    <div style="text-align: right;">
+      <span class="badge badge-success">Status: Passed & Verified</span>
+    </div>
+  </div>
+
+  <!-- Metadata Overview -->
+  <div class="meta-box">
+    <div class="meta-item">
+      <div class="label">Project</div>
+      <div class="val">Task Manager API</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">Candidate Repository</div>
+      <div class="val">github.com/SWapnit18/Underpin</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">Tech Stack</div>
+      <div class="val">Node.js, Express, Jest, Supertest</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">Test Results</div>
+      <div class="val">87 / 87 Passed (100%)</div>
+    </div>
+  </div>
+
+  <!-- Section 1: Executive Summary -->
+  <h2>1. Executive Summary</h2>
+  <p>
+    This report documents the testing, debugging, and feature development performed for the <strong>Untested API</strong> take-home assignment.
+    The primary objectives were to design a production-grade automated test suite from scratch, identify and document latent bugs, fix critical regressions, and implement a validated task assignment endpoint (<span class="inline-code">PATCH /tasks/:id/assign</span>) with clean REST semantics.
+  </p>
+  <ul>
+    <li><strong>Overall Line Coverage:</strong> 97.27% (exceeding the 80% requirement).</li>
+    <li><strong>Total Test Cases:</strong> 87 automated tests spanning unit and integration layers with 0 failures.</li>
+    <li><strong>Bugs Resolved:</strong> Fixed priority data loss on task completion and off-by-one pagination skipping.</li>
+    <li><strong>New Feature Delivered:</strong> Added assignee validation, persistence, and HTTP 409 conflict detection for already-assigned tasks.</li>
+  </ul>
+
+  <!-- Section 2: Test Suite & Coverage -->
+  <h2>2. Automated Testing & Code Coverage</h2>
+  <p>
+    Testing was divided into three dedicated suites following clean separation of concerns:
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>Test Suite</th>
+        <th>File Path</th>
+        <th>Tests</th>
+        <th>Scope & Capabilities</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Service Unit Tests</strong></td>
+        <td><span class="inline-code">task-api/tests/taskService.test.js</span></td>
+        <td>40 tests</td>
+        <td>CRUD operations, store isolation, pagination limits, stats calculation, and regression safety.</td>
+      </tr>
+      <tr>
+        <td><strong>Validation Unit Tests</strong></td>
+        <td><span class="inline-code">task-api/tests/validators.test.js</span></td>
+        <td>17 tests</td>
+        <td>Input boundary testing: empty strings, whitespace, type enforcement, invalid statuses, ISO dates.</td>
+      </tr>
+      <tr>
+        <td><strong>Routes Integration Tests</strong></td>
+        <td><span class="inline-code">task-api/tests/tasks.routes.test.js</span></td>
+        <td>30 tests</td>
+        <td>End-to-end Supertest execution across all HTTP methods, query filters, pagination, and status codes (200, 201, 204, 400, 404, 409).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Coverage Metric Breakdown</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Component</th>
+        <th>Statement %</th>
+        <th>Branch %</th>
+        <th>Function %</th>
+        <th>Line %</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="inline-code">src/routes/tasks.js</span></td>
+        <td>100.00%</td>
+        <td>100.00%</td>
+        <td>100.00%</td>
+        <td>100.00%</td>
+      </tr>
+      <tr>
+        <td><span class="inline-code">src/services/taskService.js</span></td>
+        <td>100.00%</td>
+        <td>96.00%</td>
+        <td>100.00%</td>
+        <td>100.00%</td>
+      </tr>
+      <tr>
+        <td><span class="inline-code">src/utils/validators.js</span></td>
+        <td>100.00%</td>
+        <td>100.00%</td>
+        <td>100.00%</td>
+        <td>100.00%</td>
+      </tr>
+      <tr>
+        <td><span class="inline-code">src/app.js</span></td>
+        <td>69.23%</td>
+        <td>75.00%</td>
+        <td>0.00%</td>
+        <td>69.23%</td>
+      </tr>
+      <tr style="font-weight: 700; background: #e0f2fe;">
+        <td>Total Project Suite</td>
+        <td>97.51%</td>
+        <td>97.87%</td>
+        <td>93.33%</td>
+        <td>97.27%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="page-break"></div>
+
+  <!-- Section 3: Bug Reports & Resolutions -->
+  <h2>3. Bug Reports & Engineering Fixes</h2>
+
+  <div class="card">
+    <div class="card-title">Bug 1: Task Completion Overwrites Existing Priority <span class="tag-fixed">FIXED</span></div>
+    <p><strong>Location:</strong> <span class="inline-code">src/services/taskService.js:69</span> | <strong>Severity:</strong> High</p>
+    <p><strong>Root Cause:</strong> The <span class="inline-code">completeTask(id)</span> function hardcoded <span class="inline-code">priority: 'medium'</span> upon task completion. If a user had created an urgent or low-priority task, completing it permanently erased and corrupted the priority value.</p>
+    <p><strong>Resolution:</strong> Removed the hardcoded priority property so the existing task's attributes are fully preserved via object spread (<span class="inline-code">...task</span>).</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Bug 2: Off-By-One Offset in Pagination Calculation <span class="tag-fixed">FIXED</span></div>
+    <p><strong>Location:</strong> <span class="inline-code">src/services/taskService.js:12</span> | <strong>Severity:</strong> High</p>
+    <p><strong>Root Cause:</strong> Offset was computed as <span class="inline-code">offset = page * limit</span>. When requesting page 1 with limit 2, offset evaluated to <span class="inline-code">1 * 2 = 2</span>, skipping items 0 and 1 entirely.</p>
+    <p><strong>Resolution:</strong> Corrected formula to <span class="inline-code">(pageNum - 1) * limitNum</span> with defensive numeric parsing (<span class="inline-code">Math.max(1, parseInt(page) || 1)</span>).</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Bug 3: Loose Status Substring Matching</div>
+    <p><strong>Location:</strong> <span class="inline-code">src/services/taskService.js:9</span> | <strong>Severity:</strong> Medium</p>
+    <p><strong>Root Cause:</strong> Status filtering used <span class="inline-code">t.status.includes(status)</span> instead of strict equality (<span class="inline-code">===</span>), allowing partial terms like <span class="inline-code">status=do</span> to match both <span class="inline-code">todo</span> and <span class="inline-code">done</span>.</p>
+    <p><strong>Status:</strong> Formally documented with a diagnostic test in <span class="inline-code">tests/taskService.test.js</span>.</p>
+  </div>
+
+  <!-- Section 4: New Feature Implementation -->
+  <h2>4. New Feature: Task Assignment Endpoint</h2>
+  <p>Implemented endpoint: <span class="inline-code">PATCH /tasks/:id/assign</span></p>
+
+  <h3>Key Architectural Decisions</h3>
+  <ul>
+    <li><strong>Input Validation (<span class="inline-code">src/utils/validators.js</span>):</strong> Validates that the <span class="inline-code">assignee</span> field is present, is a string, and contains non-whitespace characters. Rejects empty payloads with HTTP 400.</li>
+    <li><strong>Conflict Protection (<span class="inline-code">src/services/taskService.js</span>):</strong> If a task already has an assignee, returns <span class="inline-code">{ conflict: true, task }</span> which the route maps to <strong>HTTP 409 Conflict</strong>. This prevents race conditions and accidental overwrites in multi-user environments.</li>
+    <li><strong>Resource Verification:</strong> If the target ID does not exist, returns <strong>HTTP 404 Not Found</strong>.</li>
+  </ul>
+
+  <!-- Section 5: Production Readiness -->
+  <h2>5. Production Readiness & Engineering Reflection</h2>
+  <ol>
+    <li>
+      <strong>Data Persistence:</strong> The current implementation relies on an in-memory array. Before production deployment, an ACID-compliant database (PostgreSQL with Prisma/Knex) should replace in-memory arrays to prevent data loss on server restarts.
+    </li>
+    <li>
+      <strong>Concurrency & Race Conditions:</strong> In a high-throughput multi-worker setup, concurrent writes to the same task must be protected using database transactions or optimistic concurrency control (e.g. version tokens).
+    </li>
+    <li>
+      <strong>Security & Auth:</strong> Add authentication (JWT / OAuth2), role-based access control (RBAC), Helmet security headers, and Express rate limiting.
+    </li>
+  </ol>
+
+  <!-- Section 6: Verification Instructions -->
+  <h2>6. Verification & Reproducibility Guide</h2>
+  <div class="code-block">
+# 1. Clone repository
+git clone https://github.com/SWapnit18/Underpin.git
+cd Underpin
+
+# 2. Run automated test suite
+npm test
+
+# 3. Generate complete coverage report
+npm run coverage
+  </div>
+
+  <div class="footer">
+    Report generated on October 1, 2026 &bull; Candidate: Swapnil Patel &bull; Repository: github.com/SWapnit18/Underpin
+  </div>
+
+</body>
+</html>
